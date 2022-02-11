@@ -15,21 +15,17 @@ const RouterABI = require("../abi/UniswapV2Router02.json");
 const RouterContract = new web3.eth.Contract(RouterABI, RouterAddress);
 
 function Items(props) {
-    const [PriceList, setPriceList] = useState([]);
-    const [JewelOne, setJewelOne] = useState(0);
-    const [JewelUSD, setJewelUSD] = useState(0);
-
     useEffect(() => {
         async function checkCurrentPrice(item) {
             let decimals = decimalsJson[item];
             if (item === "Jewel") {
-                setPriceList(PriceList => [...PriceList, ["Jewel", 1]]);
+                props.setPriceList(PriceList => [...PriceList, ["Jewel", 1]]);
             } else {
                 try {
                     let result = await RouterContract.methods.getAmountsOut(1, [ItemsJson[item], ItemsJson["Jewel"]]).call();
-                    setPriceList(PriceList => [...PriceList, [item, result[1]*(10**decimals)/(10**18)]]);
+                    props.setPriceList(PriceList => [...PriceList, [item, result[1]*(10**decimals)/(10**18)]]);
                 } catch(error) {
-                    setPriceList(PriceList => [...PriceList, [item, "Error"]]);
+                    props.setPriceList(PriceList => [...PriceList, [item, "Error"]]);
                 }
             }
         }
@@ -42,7 +38,7 @@ function Items(props) {
                 console.log(error)
                 result = [1,0];
             }
-            setJewelOne(result[1]/(10**18));
+            props.setJewelOne(result[1]/(10**18));
         }
         async function jewelToUSD() {
             let result;
@@ -54,11 +50,13 @@ function Items(props) {
                 console.log(error)
                 result = [1,0];
             }
-            setJewelUSD(result[1]/(10**6));
+            props.setJewelUSD(result[1]/(10**6));
         }
+        props.setPriceList([]);
         Object.keys(ItemsJson).map((_) => checkCurrentPrice(_));
         jewelToOne();
         jewelToUSD();
+        // eslint-disable-next-line
     }, [])
 
     function RenderItem(props) {
@@ -86,11 +84,11 @@ function Items(props) {
         </tr>
     </thead>
     <tbody>
-        {PriceList.map((_, index) => <RenderItem 
+        {props.PriceList.map((_, index) => <RenderItem 
             tuple={_} 
             index={index}
-            JewelOne={JewelOne}
-            JewelUSD={JewelUSD}/>)}
+            JewelOne={props.JewelOne}
+            JewelUSD={props.JewelUSD}/>)}
     </tbody>
     </Table>
     </Row>
