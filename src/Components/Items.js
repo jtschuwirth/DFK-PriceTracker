@@ -1,7 +1,13 @@
 // eslint-disable-next-line
 import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
+// eslint-disable-next-line
+import Card from 'react-bootstrap/Card';
+// eslint-disable-next-line
+import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
+// eslint-disable-next-line
+import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 const main_net = 'https://rpc.s0.t.hmny.io'
 const Web3 = require('web3');
@@ -88,7 +94,8 @@ function Items(props) {
             tuple={_} 
             index={index}
             JewelOne={props.JewelOne}
-            JewelUSD={props.JewelUSD}/>)}
+            JewelUSD={props.JewelUSD}
+        />)}
     </tbody>
     </Table>
     </Row>

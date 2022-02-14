@@ -19,7 +19,10 @@ function App() {
           JewelUSD={JewelUSD}
           setJewelUSD={setJewelUSD}
           />
-          <Alchemist />
+          <Alchemist 
+          PriceList={PriceList}
+          JewelOne={JewelOne}
+          JewelUSD={JewelUSD}/>
       </div>
     );
 }
