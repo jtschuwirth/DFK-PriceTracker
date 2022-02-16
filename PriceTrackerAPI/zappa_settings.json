@@ -1,0 +1,12 @@
+{
+    "pricetrackerapi": {
+        "app_function": "application.app",
+        "project_name": "PriceTrackerApi",
+        "s3_bucket": "pricetrackerapi",
+        "aws_region": "us-east-1",
+        "environment_variables": {
+            "EXAMPLE_ENV_VAR": "prod"
+        },
+        "lambda_description": "Zappa + Docker + Flask"
+    }
+}

@@ -1,6 +1,21 @@
-docker build -t trackerapi:latest .
-docker run -p 5000:5000 trackerapi:latest
-
+zappa save-python-settings-file pricetrackerapi
+docker build -t pricetrackerapi:latest .
+docker run -p 9000:8080 pricetrackerapi:latest
 
 test:
-http://localhost:5000/status
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d "{"""path""": """/status""", """httpMethod""": """GET""", """requestContext""": {}, """body""": null}"
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d "{"""path""": """/itemPrices""", """httpMethod""": """GET""", """requestContext""": {}, """body""": null}"
+
+ECR deployment:
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 579907623869.dkr.ecr.us-east-1.amazonaws.com
+docker tag pricetrackerapi:latest 579907623869.dkr.ecr.us-east-1.amazonaws.com/pricetrackerapi:latest
+docker push 579907623869.dkr.ecr.us-east-1.amazonaws.com/pricetrackerapi:latest
+
+deployment:
+zappa deploy pricetrackerapi -d 579907623869.dkr.ecr.us-east-1.amazonaws.com/pricetrackerapi:latest
+
+update:
+zappa update pricetrackerapi -d 579907623869.dkr.ecr.us-east-1.amazonaws.com/pricetrackerapi:latest
+
+link:
+https://qto7p9j2d3.execute-api.us-east-1.amazonaws.com/pricetrackerapi/

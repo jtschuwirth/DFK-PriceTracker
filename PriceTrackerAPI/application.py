@@ -11,13 +11,13 @@ main_net = 'https://rpc.s0.t.hmny.io'
 test_net = "https://api.s0.b.hmny.io"
 w3 = Web3(Web3.HTTPProvider(main_net))
 
-ItemsJson = open("PriceTrackerAPI/json/items.json")
+ItemsJson = open("Items.json")
 Items = json.load(ItemsJson)
-decimalsJson = open("PriceTrackerAPI/json/decimals.json")
+decimalsJson = open("decimals.json")
 decimals = json.load(decimalsJson)
 
 RouterAddress = "0x24ad62502d1C652Cc7684081169D04896aC20f30"
-RouterJson = open("PriceTrackerAPI/abi/UniswapV2Router02.json")
+RouterJson = open("UniswapV2Router02.json")
 RouterABI = json.load(RouterJson)
 RouterContract = w3.eth.contract(address=RouterAddress, abi=RouterABI)
 
@@ -48,5 +48,3 @@ async def getStatus():
 @app.route("/itemPrices", methods=['GET'])
 async def itemPrices():
     return getItemsPrices()
-
-app.run(host='0.0.0.0')
