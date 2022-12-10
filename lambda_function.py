@@ -1,6 +1,9 @@
 import boto3
 import os
+from dotenv import load_dotenv
 from functions.saveItemsPrices import saveItemsPrices
+
+load_dotenv()
 
 my_session = boto3.session.Session(
         aws_access_key_id=os.environ.get("ACCESS_KEY"),
