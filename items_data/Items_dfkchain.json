@@ -57,7 +57,11 @@
     "Lesser Wit Stone": "0xFC943eBd19112D6c6098412238E4E8319641B3d8",
     "Lesser Insight Stone": "0x3D112747ff2463802Afa240B62ade8F1cc4a5c7d",
     "Lesser Fortune Stone": "0x934e3e2a433F37cC2D02855A43fD7Ed475EA7451",
-    "Lesser Chaos Stone": "0x7643ADB5AaF129A424390CB055d6e23231fFd690"
+    "Lesser Chaos Stone": "0x7643ADB5AaF129A424390CB055d6e23231fFd690",
+
+    "Lesser Vigor Crystal": "0x5e4Cf6907CB5fBe2F642E399F6d07E567155d1F8",
+    "Lesser Might Crystal": "0x5bAC3cAd961B01Ef9510C8e6c5402A2bB1542831",
+    "Lesser Fortitude Crystal": "0xbd2677c06C9448534A851bdD25dF045872b87cb1"
 
 
 }

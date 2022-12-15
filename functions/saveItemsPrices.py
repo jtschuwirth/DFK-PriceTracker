@@ -42,7 +42,8 @@ def saveItemsPrices(table):
     if response["Items"]:
         last_entry = response["Items"][-1]
         if int(last_entry["date_"]) > now-60*60*23:
-            return "data has been renewed in less than 23 hours"
+            #return "data has been renewed in less than 23 hours"
+            pass
 
     for item in Items.keys():
         if item == "Jewel": continue
